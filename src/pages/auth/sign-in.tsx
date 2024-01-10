@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -63,12 +64,25 @@ export function SignIn() {
             </div>
             <Button
               disabled={isSubmitting}
-              className="md:text-md h-12 w-full text-lg md:h-10"
+              className="h-12 w-full text-lg md:h-10 md:text-sm"
               type="submit"
             >
               Send Login Link
             </Button>
           </form>
+          <div className="flex justify-center">
+            <span className="text-lg text-muted-foreground md:text-sm">
+              Don&apos;t have an account? Sign up{" "}
+              <Link
+                to="/sign-up"
+                className="cursor-pointer text-primary underline underline-offset-4"
+              >
+                {" "}
+                here
+              </Link>
+              .
+            </span>
+          </div>
         </div>
       </div>
     </>
