@@ -56,7 +56,7 @@ export function Header() {
           {navigationLinks.map((link) => (
             <NavLink key={link.label} to={link.href}>
               {link.icon}
-              Home
+              {link.label}
             </NavLink>
           ))}
         </div>
