@@ -26,7 +26,7 @@ export function Orders() {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[64px]"></TableHead>
-                <TableHead className="w-[140px]">Identifier</TableHead>
+                <TableHead className="w-[140px]">Order ID</TableHead>
                 <TableHead className="w-[180px]">Ordered</TableHead>
                 <TableHead className="w-[140px]">Status</TableHead>
                 <TableHead>Client</TableHead>
