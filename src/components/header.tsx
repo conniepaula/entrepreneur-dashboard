@@ -27,13 +27,13 @@ const navigationLinks = [
 export function Header() {
   return (
     <nav className="sticky inset-x-0 top-0 z-30 border-b bg-background">
-      <div className="flex h-16 items-center gap-6 px-6">
+      <div className="flex h-16 items-center justify-between gap-6 px-6">
         <Logo className="h-6 w-6 text-black" />
         {/* Mobile navigation bar */}
-        <div className="w-full md:hidden">
+        <div className="flex items-center gap-3 md:hidden">
           <Drawer fixed={true}>
             <DrawerTrigger asChild>
-              <Menu className="ml-auto" />
+              <Menu />
             </DrawerTrigger>
             <DrawerContent className="flex h-full flex-col px-8 pb-8 md:hidden">
               <div className="space-y-4 pt-8">
@@ -47,6 +47,7 @@ export function Header() {
               <MobileAccountMenu />
             </DrawerContent>
           </Drawer>
+          <ModeToggle />
         </div>
 
         {/* Desktop navigation bar */}
