@@ -64,7 +64,7 @@ export function PopularCategoriesChart() {
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-2 items-center gap-1 md:grid-cols-3">
           {data.map((item, i) => (
             <div key={item.category} className="flex items-center gap-2">
               <span
