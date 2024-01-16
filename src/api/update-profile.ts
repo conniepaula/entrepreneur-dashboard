@@ -9,6 +9,5 @@ interface UpdateProfileRequestBody {
 
 export async function updateProfile(body: UpdateProfileRequestBody) {
   const { name, description } = body;
-  throw new Error();
   await api.put("/profile", { name, description });
 }
