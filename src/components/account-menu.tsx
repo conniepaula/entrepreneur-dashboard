@@ -1,10 +1,11 @@
 import { DialogTrigger } from "@radix-ui/react-dialog";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Building, ChevronDown, LogOut } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { getProfile } from "@/api/get-profile";
 import { getRepresentedBusiness } from "@/api/get-represented-business";
+import { signOut } from "@/api/sign-out";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
 import {
@@ -23,6 +24,13 @@ import { BusinessProfileDialog } from "./business-profile-dialog";
 // TODO: Add unchangeable links to a constant file
 
 export function DesktopAccountMenu() {
+  const navigate = useNavigate();
+  const { mutateAsync: signOutFn, isPending: isSignOutPending } = useMutation({
+    mutationFn: signOut,
+    onSuccess: () => {
+      navigate("/sign-in", { replace: true });
+    },
+  });
   const { data: representative, isLoading: isLoadingRepresentative } = useQuery(
     {
       queryKey: ["profile"],
@@ -73,7 +81,11 @@ export function DesktopAccountMenu() {
               <span className="">Business Profile</span>
             </DropdownMenuItem>
           </DialogTrigger>
-          <DropdownMenuItem className="space-x-2 text-violet-500 dark:text-violet-400">
+          <DropdownMenuItem
+            onClick={() => signOutFn()}
+            disabled={isSignOutPending}
+            className="space-x-2 text-violet-500 hover:text-violet-500/90"
+          >
             <LogOut className="h-4 w-4" />
             <span className="">Log Out</span>
           </DropdownMenuItem>
@@ -85,6 +97,13 @@ export function DesktopAccountMenu() {
 }
 
 export function MobileAccountMenu() {
+  const navigate = useNavigate();
+  const { mutateAsync: signOutFn, isPending: isSignOutPending } = useMutation({
+    mutationFn: signOut,
+    onSuccess: () => {
+      navigate("/sign-in", { replace: true });
+    },
+  });
   const { data: representative, isLoading: isLoadingRepresentative } = useQuery(
     {
       queryKey: ["profile"],
@@ -97,38 +116,48 @@ export function MobileAccountMenu() {
     staleTime: Infinity,
   });
   return (
-    <div className="mt-auto md:hidden">
-      <div className="flex items-center gap-2">
-        {isLoadingBusiness || isLoadingRepresentative ? (
-          <div className="flex w-full justify-between">
-            <Skeleton className="h-4 w-32" />
-            <Skeleton className="h-4 w-24" />
-          </div>
-        ) : (
-          <>
-            <span className="text-md flex select-none items-center gap-2">
-              {business?.name}
-            </span>
-            <span className="ml-auto text-sm text-muted-foreground">
-              {representative?.name}
-            </span>
-          </>
-        )}
+    <Dialog>
+      <div className="mt-auto md:hidden">
+        <div className="flex items-center gap-2">
+          {isLoadingBusiness || isLoadingRepresentative ? (
+            <div className="flex w-full justify-between">
+              <Skeleton className="h-4 w-32" />
+              <Skeleton className="h-4 w-24" />
+            </div>
+          ) : (
+            <>
+              <span className="text-md flex select-none items-center gap-2">
+                {business?.name}
+              </span>
+              <span className="ml-auto text-sm text-muted-foreground">
+                {representative?.name}
+              </span>
+            </>
+          )}
+        </div>
+        <Separator className="my-2" />
+        <div>
+          <DialogTrigger asChild>
+            <Button
+              variant="link"
+              className="flex h-10  items-center gap-2 p-0 text-foreground"
+            >
+              <Building className="h-4 w-4" />
+              <span className="text-sm">Business Profile</span>
+            </Button>
+          </DialogTrigger>
+          <Button
+            onClick={() => signOutFn()}
+            disabled={isSignOutPending}
+            variant="link"
+            className="mt-0 flex h-10 items-center gap-2 p-0 text-violet-500 dark:text-violet-400"
+          >
+            <LogOut className="h-4 w-4" />
+            <span className="text-sm">Log Out</span>
+          </Button>
+        </div>
       </div>
-      <Separator className="my-2" />
-      <div className="space-y-2">
-        <Link to="/" className="flex items-center gap-2">
-          <Building className="h-4 w-4" />
-          <span className="text-sm">Business Profile</span>
-        </Link>
-        <Link
-          to="/sign-in"
-          className="flex items-center gap-2 text-violet-500 dark:text-violet-400"
-        >
-          <LogOut className="h-4 w-4" />
-          <span className="text-sm">Log Out</span>
-        </Link>
-      </div>
-    </div>
+      <BusinessProfileDialog />
+    </Dialog>
   );
 }
