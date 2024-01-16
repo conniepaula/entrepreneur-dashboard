@@ -1,10 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { signUp } from "@/api/sign-up";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -19,7 +21,7 @@ import { Label } from "@/components/ui/label";
 
 const signUpFormSchema = z
   .object({
-    businessName: z.string().min(5),
+    businessName: z.string().min(3),
     representativeName: z.string().min(3),
     email: z.string().email().min(6),
     phoneNumber: z.string(),
@@ -38,17 +40,28 @@ export function SignUp() {
     formState: { isSubmitting },
   } = form;
 
+  const { mutateAsync: registerBusiness } = useMutation({ mutationFn: signUp });
+
   const handleSignUp = async (data: SignUpForm) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    if (!data) {
+    try {
+      await registerBusiness({
+        businessName: data.businessName,
+        email: data.email,
+        phoneNumber: data.phoneNumber,
+        representativeName: data.representativeName,
+      });
+      toast.success("Welcome! We are so excited to have you here.", {
+        action: {
+          label: "Login",
+          onClick: () => navigate(`/sign-in?email=${data.email}`),
+        },
+      });
+    } catch (error) {
       toast.error(
         "Account could not be created successfully. Please try again.",
       );
-      return;
     }
-    toast.success("Welcome! We are so excited to have you here.", {
-      action: { label: "Login", onClick: () => navigate("/sign-in") },
-    });
   };
   return (
     <>
