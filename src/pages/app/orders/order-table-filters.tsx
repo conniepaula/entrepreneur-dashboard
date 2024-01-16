@@ -28,7 +28,7 @@ export function OrderTableFilters() {
             <SelectItem value="all">Any status</SelectItem>
             <SelectItem value="pending">Pending</SelectItem>
             <SelectItem value="cancelled">Cancelled</SelectItem>
-            <SelectItem value="processing">Processing</SelectItem>
+            <SelectItem value="awaiting_payment">Processing</SelectItem>
             <SelectItem value="en-route">Out for delivery</SelectItem>
             <SelectItem value="delivered">Delivered</SelectItem>
           </SelectContent>
