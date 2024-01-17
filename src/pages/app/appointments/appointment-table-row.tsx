@@ -1,12 +1,20 @@
-import { ArrowRight, Search, X } from "lucide-react";
+import { format } from "date-fns";
+import { Search, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { TableCell, TableRow } from "@/components/ui/table";
+import { Appointment } from "@/types";
 
 import { AppointmentDetails } from "./appointment-details";
+import { AppointmentStatus } from "./appointment-status";
 
-export function AppointmentTableRow() {
+type AppointmentTableRowProps = Omit<Appointment, "createdAt">;
+
+export function AppointmentTableRow(props: AppointmentTableRowProps) {
+  const { appointmentId, appointmentDate, clientName, total, status } = props;
+  const date = format(appointmentDate, "dd-MM-yyyy");
+  const time = format(appointmentDate, "hh:mm a");
   return (
     <TableRow>
       <TableCell>
@@ -21,17 +29,17 @@ export function AppointmentTableRow() {
         </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xs font-medium">
-        3810419305
+        {appointmentId}
       </TableCell>
-      <TableCell className="text-muted-foreground">15 min ago</TableCell>
-      <TableCell className="text-muted-foreground">14/02/2024</TableCell>
-      <TableCell className="font-medium">Client Name</TableCell>
-      <TableCell className="font-medium">$89.00</TableCell>
+      <TableCell className="text-muted-foreground">{date}</TableCell>
+      <TableCell className="text-muted-foreground">{time}</TableCell>
+      <TableCell className="font-medium">{clientName}</TableCell>
+      <TableCell className="font-medium">
+        {total.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+      </TableCell>
       <TableCell>
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-gray-400" />
-          <span className="font-medium text-muted-foreground">Booked</span>
-        </div>
+        <></>
+        <AppointmentStatus status={status} />
       </TableCell>
       <TableCell>
         <Button variant="ghost" size="xs">

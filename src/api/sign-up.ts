@@ -1,7 +1,7 @@
 import { api } from "@/lib/axios";
-import { Business } from "@/types";
+import { BusinessBase } from "@/types";
 
-type SignUpBody = Omit<Business, "description" | "businessId">;
+type SignUpBody = BusinessBase;
 
 export async function signUp(body: SignUpBody) {
   const { businessName, representativeName, email, phoneNumber } = body;

@@ -20,6 +20,7 @@ export const getAppointments = new Elysia().use(authentication).get(
     const baseQuery = db
       .select({
         appointmentId: appointments.id,
+        appointmentDate: appointments.appointmentDate,
         createdAt: appointments.createdAt,
         status: appointments.status,
         clientName: users.name,
