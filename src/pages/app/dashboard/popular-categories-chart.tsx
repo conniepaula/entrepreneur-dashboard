@@ -10,7 +10,7 @@ interface Data {
   amount: number;
 }
 
-const data: Data[] = [
+const data: Array<Data> = [
   { service: "Dental Cleaning", amount: 150 },
   { service: "Cavity Filling", amount: 250 },
   { service: "Teeth Whitening", amount: 200 },

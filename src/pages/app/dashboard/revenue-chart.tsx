@@ -24,7 +24,7 @@ interface Data {
   revenue: number;
 }
 
-const data: Data[] = [
+const data: Array<Data> = [
   { date: "03/01", revenue: 150 },
   { date: "03/02", revenue: 97 },
   { date: "03/03", revenue: 310 },
