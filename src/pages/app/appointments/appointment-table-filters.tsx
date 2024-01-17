@@ -10,12 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function OrderTableFilters() {
+export function AppointmentTableFilters() {
   return (
     <form className="relative flex items-center overflow-clip [&>*]:pb-2 md:[&>*]:pb-0">
       <span className="sticky left-0 pb-2 text-sm font-semibold">Filters:</span>
       <div className="ml-1 mr-2 flex h-12 flex-1 items-center gap-2 overflow-x-scroll px-1 md:mx-2 md:px-0">
-        <Input placeholder="Order ID" className="h-8 w-auto" />
+        <Input placeholder="Appointment ID" className="h-8 w-auto" />
         <Input
           placeholder="Client name"
           className="h-8 w-[160px] md:w-[320px]"
@@ -26,11 +26,11 @@ export function OrderTableFilters() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Any status</SelectItem>
-            <SelectItem value="pending">Pending</SelectItem>
-            <SelectItem value="cancelled">Cancelled</SelectItem>
-            <SelectItem value="awaiting_payment">Processing</SelectItem>
-            <SelectItem value="en-route">Out for delivery</SelectItem>
-            <SelectItem value="delivered">Delivered</SelectItem>
+            <SelectItem value="booked">Booked</SelectItem>
+            <SelectItem value="canceled">Canceled</SelectItem>
+            <SelectItem value="prepaid">Pre-paid</SelectItem>
+            <SelectItem value="awaiting_payment">Awaiting payment</SelectItem>
+            <SelectItem value="completed">Completed</SelectItem>
           </SelectContent>
         </Select>
       </div>

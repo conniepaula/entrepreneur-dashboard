@@ -32,7 +32,7 @@ type BusinessProfileForm = z.infer<typeof businessProfileSchema>;
 
 export function BusinessProfileDialog() {
   const { data: business } = useQuery({
-    queryKey: ["represented-restaurant"],
+    queryKey: ["represented-business"],
     queryFn: getRepresentedBusiness,
     staleTime: Infinity,
   });

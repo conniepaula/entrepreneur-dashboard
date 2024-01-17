@@ -6,17 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // import { CustomTooltip } from "@/pages/app/dashboard/custom-tooltip";
 
 interface Data {
-  category: string;
-  amountSold: number;
+  service: string;
+  amount: number;
 }
 
 const data: Data[] = [
-  { category: "Courses", amountSold: 342 },
-  { category: "Snippets", amountSold: 34 },
-  { category: "Templates", amountSold: 78 },
-  { category: "T-Shirts", amountSold: 110 },
-  { category: "Software", amountSold: 52 },
-  { category: "Mentorship Sessions", amountSold: 7 },
+  { service: "Dental Cleaning", amount: 150 },
+  { service: "Cavity Filling", amount: 250 },
+  { service: "Teeth Whitening", amount: 200 },
+  { service: "Dental X-rays", amount: 120 },
+  { service: "Root Canal Therapy", amount: 800 },
+  { service: "Dental Crown", amount: 600 },
 ];
 
 const COLORS = [
@@ -28,13 +28,13 @@ const COLORS = [
   colors.orange[500],
 ];
 
-export function PopularCategoriesChart() {
+export function PopularServicesChart() {
   return (
     <Card className="md:col-span-3">
       <CardHeader className="pb-8">
         <div className="flex items-center justify-between ">
           <CardTitle className="text-base font-medium">
-            Popular Categories
+            Popular Services
           </CardTitle>
           <BarChart className="h-4 w-4 text-muted-foreground" />
         </div>
@@ -46,8 +46,8 @@ export function PopularCategoriesChart() {
             {/* <Tooltip content={<CustomTooltip />} /> */}
             <Pie
               data={data}
-              dataKey="amountSold"
-              nameKey="category"
+              dataKey="amount"
+              nameKey="service"
               cx="50%"
               cy="50%"
               outerRadius={90}
@@ -66,7 +66,7 @@ export function PopularCategoriesChart() {
         </ResponsiveContainer>
         <div className="grid grid-cols-2 items-center gap-1 md:grid-cols-3">
           {data.map((item, i) => (
-            <div key={item.category} className="flex items-center gap-2">
+            <div key={item.service} className="flex items-center gap-2">
               <span
                 style={{
                   backgroundColor: COLORS[i],
@@ -74,7 +74,7 @@ export function PopularCategoriesChart() {
                 className="h-3 w-3 flex-shrink-0 rounded-sm"
               ></span>
               <span className="truncate text-muted-foreground">
-                {item.category}
+                {item.service}
               </span>
             </div>
           ))}

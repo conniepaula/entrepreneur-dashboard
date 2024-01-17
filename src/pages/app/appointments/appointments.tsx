@@ -9,35 +9,35 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { OrderTableFilters } from "./order-table-filters";
-import { OrderTableRow } from "./order-table-row";
+import { AppointmentTableFilters } from "./appointment-table-filters";
+import { AppointmentTableRow } from "./appointment-table-row";
 
-export function Orders() {
+export function Appointments() {
   return (
     <>
-      <Helmet title="Orders" />
+      <Helmet title="Appointments" />
       <div className="flex flex-col gap-4">
-        <h1 className="text-3xl font-bold tracking-tight">Orders</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Appointments</h1>
       </div>
       <div className="space-y-2.5">
-        <OrderTableFilters />
+        <AppointmentTableFilters />
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[64px]"></TableHead>
-                <TableHead className="w-[140px]">Order ID</TableHead>
-                <TableHead className="w-[180px]">Ordered</TableHead>
-                <TableHead className="w-[140px]">Status</TableHead>
+                <TableHead className="w-[140px]">Appointment ID</TableHead>
+                <TableHead className="w-[140px]">Created at</TableHead>
+                <TableHead className="w-[180px]">Appointment date</TableHead>
                 <TableHead>Client</TableHead>
                 <TableHead className="w-[140px]">Total</TableHead>
-                <TableHead className="w-[164px]"></TableHead>
+                <TableHead className="w-[164px]">Status</TableHead>
                 <TableHead className="w-[132px]"></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {Array.from({ length: 10 }).map((_, i) => (
-                <OrderTableRow key={i} />
+                <AppointmentTableRow key={i} />
               ))}
             </TableBody>
           </Table>

@@ -14,14 +14,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-// interface OrderDetailsProps {}
-
-export function OrderDetails() {
+export function AppointmentDetails() {
   return (
     <DialogContent className="px-2 py-6 md:p-6">
       <DialogHeader>
-        <DialogTitle>Order 128394501</DialogTitle>
-        <DialogDescription>Order details</DialogDescription>
+        <DialogTitle>Appointment 128394501</DialogTitle>
+        <DialogDescription>Appointment details</DialogDescription>
       </DialogHeader>
       <div className="space-y-6">
         <Table>
@@ -32,7 +30,7 @@ export function OrderDetails() {
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-gray-400" />
                   <span className="font-medium text-muted-foreground">
-                    Pending
+                    Booked
                   </span>
                 </div>
               </TableCell>
@@ -70,7 +68,9 @@ export function OrderDetails() {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="text-muted-foreground">Ordered</TableCell>
+              <TableCell className="text-muted-foreground">
+                Created at
+              </TableCell>
               <TableCell className="flex justify-end">
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-muted-foreground">
@@ -105,7 +105,7 @@ export function OrderDetails() {
             </TableRow>
           </TableBody>
           <TableFooter>
-            <TableCell colSpan={3}>Order total</TableCell>
+            <TableCell colSpan={3}>Appointment total</TableCell>
             <TableCell className="text-right font-medium">$598.00</TableCell>
           </TableFooter>
         </Table>

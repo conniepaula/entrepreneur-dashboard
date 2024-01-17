@@ -2,10 +2,10 @@ import { Helmet } from "react-helmet-async";
 
 import { MonthlyRevenueCard } from "@/pages/app/dashboard/monthly-revenue-card";
 
-import { DailyOrderAmountCard } from "./daily-order-amount-card";
-import { MonthlyCancelledOrders } from "./monthly-cancelled-orders";
-import { MonthlyOrderAmountCard } from "./monthly-order-amount-card";
-import { PopularCategoriesChart } from "./popular-categories-chart";
+import { AppointmentAmountInMonthCard } from "./appointment-amount-in-month-card";
+import { AppointmentAmountToday } from "./appointment-amount-today-card";
+import { CanceledAppointmentsInMonthCard } from "./canceled-appointments-in-month-card";
+import { PopularServicesChart } from "./popular-categories-chart";
 import { RevenueChart } from "./revenue-chart";
 
 export function Dashboard() {
@@ -16,13 +16,13 @@ export function Dashboard() {
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
           <MonthlyRevenueCard />
-          <MonthlyOrderAmountCard />
-          <DailyOrderAmountCard />
-          <MonthlyCancelledOrders />
+          <AppointmentAmountInMonthCard />
+          <AppointmentAmountToday />
+          <CanceledAppointmentsInMonthCard />
         </div>
         <div className="grid gap-4 md:grid-cols-9">
           <RevenueChart />
-          <PopularCategoriesChart />
+          <PopularServicesChart />
           <div></div>
         </div>
       </div>

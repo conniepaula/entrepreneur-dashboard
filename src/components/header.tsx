@@ -18,8 +18,8 @@ const navigationLinks = [
     icon: <Home className="h-6 w-6 md:h-4 md:w-4" />,
   },
   {
-    label: "Orders",
-    href: "/",
+    label: "Appointments",
+    href: "/appointments",
     icon: <Coins className="h-6 w-6 md:h-4 md:w-4" />,
   },
 ];

@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { TableCell, TableRow } from "@/components/ui/table";
 
-import { OrderDetails } from "./order-details";
+import { AppointmentDetails } from "./appointment-details";
 
-export function OrderTableRow() {
+export function AppointmentTableRow() {
   return (
     <TableRow>
       <TableCell>
@@ -14,29 +14,24 @@ export function OrderTableRow() {
           <DialogTrigger asChild>
             <Button variant="outline" size="xs">
               <Search className="h-3 w-3" />
-              <span className="sr-only">Order details</span>
+              <span className="sr-only">Appointment details</span>
             </Button>
           </DialogTrigger>
-          <OrderDetails />
+          <AppointmentDetails />
         </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xs font-medium">
         3810419305
       </TableCell>
       <TableCell className="text-muted-foreground">15 min ago</TableCell>
-      <TableCell>
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-gray-400" />
-          <span className="font-medium text-muted-foreground">Pending</span>
-        </div>
-      </TableCell>
+      <TableCell className="text-muted-foreground">14/02/2024</TableCell>
       <TableCell className="font-medium">Client Name</TableCell>
       <TableCell className="font-medium">$89.00</TableCell>
       <TableCell>
-        <Button variant="outline" size="xs">
-          <ArrowRight className="mr-2 h-3 w-3" />
-          Approve
-        </Button>
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-gray-400" />
+          <span className="font-medium text-muted-foreground">Booked</span>
+        </div>
       </TableCell>
       <TableCell>
         <Button variant="ghost" size="xs">
